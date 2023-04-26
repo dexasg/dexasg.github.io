@@ -8,7 +8,7 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: rgb(163, 51, 7);
+			background-color: rgb(95, 31, 197);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
@@ -16,9 +16,11 @@
 			position: absolute;
 			top: 100px;
 			left: 0px;
+			
 		}
 		.board{
 			height: 100vh;
+			background-image: url("https://upload.wikimedia.org/wikipedia/en/f/f6/Tony_Tony_Chopper.jpg")
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -62,7 +64,9 @@
 			//////////////////////////////////////////////////////////////////
 			
 			// TODO 2 - Variable declarations 
-			
+			var positionX = 0;
+                var points = 0;
+                var speed = 10;
 
 			
 			/* 
@@ -71,18 +75,33 @@
 			turn it around! 
 			*/
 			function update() {
-				
-
+				/* Your Code to Increase positionX by 10 HERE*/
+				if (positionX > boardWidth) {
+					speed = -speed
+				}
+				if (positionX < 0) {
+					speed = -speed
+				}
+				positionX = positionX + speed
+				moveBoxTo(positionX)
 			};
-
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				positionX = 0;
+				speed = speed + 3
+				points = points + 1
+				changeBoxText(points);
+				if (speed > 0) {
+					speed = speed + 3
+				}
+				else if (speed < 0) {
+					speed = speed - 3
+				}
 				
-
 
 			};
 		})();
